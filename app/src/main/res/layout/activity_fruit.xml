@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff73"
+    tools:context=".FruitActivity">
+
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="44dp"
+        android:textColor="#008800"
+        android:text="--"
+        android:id="@+id/message_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/apple_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Яблуко"
+        android:textColor="#000000"
+        android:background="#875555"
+       app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/message_textView"/>
+
+    <Button
+        android:id="@+id/banana_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Банан "
+        android:background="#005555"
+        android:textColor="#000000"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apple_button"/>
+    
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
