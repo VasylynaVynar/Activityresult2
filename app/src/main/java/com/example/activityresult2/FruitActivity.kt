@@ -13,7 +13,7 @@ class FruitActivity : AppCompatActivity() {
 
         val messageTextView = findViewById<TextView>(R.id.message_textView)
 
-       val name: String? = intent.extras?.getString("name_key") ?: "No name"
+       val name: String = intent.extras?.getString("name_key") ?: "No name"
         messageTextView.text = name
 
         val appleButton = findViewById<Button>(R.id.apple_button)

@@ -1,14 +1,20 @@
 package com.example.activityresult2
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContract
 
 class MainActivity : AppCompatActivity() {
     private lateinit var resultTextView: TextView
+    private val launcher = registerForActivityResult(FruitResultContract()){ fruit: String ->
+        resultTextView.text = fruit
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,24 +26,24 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.my_button)
         button.setOnClickListener {
+            val name:String = editText.text.toString()
+            launcher.launch(name)
 
-            val inputName = editText.text.toString()
-            val intent = Intent(this, FruitActivity::class.java)
-            intent.putExtra("name_key", inputName )
-            startActivityForResult(intent, 1)
 
         }
-
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode ==1){
-           val fruitString: String? = data?.extras?.getString("result_fruit")
-            resultTextView.text = fruitString.toString()
+    }
+ class FruitResultContract : ActivityResultContract<String, String>() {
+    override fun createIntent(context: Context, name: String): Intent {
+        val intent: Intent = Intent(context, FruitActivity::class.java)
+        intent.putExtra("name_key", name)
+        return intent
         }
 
-
-    }
+     override fun parseResult(resultCode: Int, intent: Intent?): String {
+      if (resultCode != Activity.RESULT_OK) {
+          return "oops"
+      }
+         return intent?.getStringExtra("result_fruit")!!
+     }
 }
