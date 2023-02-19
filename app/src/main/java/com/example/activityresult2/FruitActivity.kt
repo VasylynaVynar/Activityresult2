@@ -24,7 +24,6 @@ class FruitActivity : AppCompatActivity() {
             intent.putExtra("result_fruit", "Apple")
             setResult(RESULT_OK, intent)
             finish()
-
         }
 
         bananaButton.setOnClickListener{
